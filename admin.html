@@ -1,12 +1,315 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
-  <title>IBC Belleza Luxé Admin</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>IBC Belleza Luxé – Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f5f7;--card:#fff;--ink:#1a1820;--mute:#6d6a76;--line:#e1dfe6;--acc:#5b2a4e;--acc2:#7a3a69;--bad:#b3261e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 "Instrument Sans",system-ui,sans-serif}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+h1{font:600 24px "Cormorant Garamond",Georgia,serif;margin:0;letter-spacing:.02em}
+h2{font:600 22px "Cormorant Garamond",Georgia,serif;margin:28px 0 10px}
+main{max-width:860px;margin:0 auto;padding:20px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+label{display:block;font-weight:500;margin:12px 0 4px}
+input,select,textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid var(--acc2);outline-offset:1px}
+textarea{min-height:80px;resize:vertical}
+button{font:inherit;font-weight:500;padding:9px 16px;border-radius:8px;border:1px solid var(--acc);background:var(--acc);color:#fff;cursor:pointer}
+button.ghost{background:transparent;color:var(--acc)}
+button.bad{border-color:var(--bad);color:var(--bad);background:transparent}
+button.sm{padding:5px 10px;font-size:13px}
+button:disabled{opacity:.5;cursor:wait}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row>*{flex:1 1 180px}
+.row.fit>*{flex:0 0 auto}
+.hint{color:var(--mute);font-size:13px;margin:4px 0 0}
+.item{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0}
+.item img{width:64px;height:48px;object-fit:cover;border-radius:6px;background:var(--line)}
+.item .t{flex:1;min-width:0}
+.item .t b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .t span{color:var(--mute);font-size:13px}
+.item .act{display:flex;gap:6px;flex-wrap:wrap}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s}
+#toast.on{opacity:1}
+#toast.err{background:var(--bad)}
+.prev{margin-top:8px;max-height:140px;border-radius:8px;display:none}
+.hide{display:none!important}
+</style>
 </head>
 <body>
-  <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+<header>
+  <h1>IBC Belleza Luxé Admin</h1>
+  <div class="row fit"><a href="./" style="color:var(--acc)">View site</a><button class="ghost sm hide" id="out">Disconnect</button></div>
+</header>
+<main>
+  <section id="connect" class="box">
+    <h2 style="margin-top:0">Connect to GitHub</h2>
+    <label for="repo">Repository (owner/name)</label>
+    <input id="repo" placeholder="username/repo-name" autocomplete="off">
+    <label for="branch">Branch</label>
+    <input id="branch" value="main" autocomplete="off">
+    <label for="token">Access token</label>
+    <input id="token" type="password" placeholder="github_pat_..." autocomplete="off">
+    <p class="hint">The token stays in this browser only. Without it, nobody can add, edit or delete anything.</p>
+    <p><button id="go">Connect</button></p>
+  </section>
+
+  <section id="app" class="hide">
+    <div class="row fit" style="margin-top:6px">
+      <button id="new">Add article</button>
+      <button class="ghost" id="seed">Load current site content</button>
+    </div>
+
+    <section id="formBox" class="box hide" style="margin-top:16px">
+      <h2 style="margin-top:0" id="formTitle">New article</h2>
+      <div class="row">
+        <div><label for="f_section">Section</label>
+          <select id="f_section"></select></div>
+        <div><label for="f_cat">Category label</label>
+          <input id="f_cat" placeholder="Fashion Trends"></div>
+      </div>
+      <label for="f_title">Title</label>
+      <input id="f_title">
+      <label for="f_ex">Short description</label>
+      <textarea id="f_ex"></textarea>
+      <div class="row">
+        <div><label for="f_read">Read time</label>
+          <input id="f_read" placeholder="5 min read"></div>
+        <div><label for="f_link">Link (optional)</label>
+          <input id="f_link" placeholder="article.html"></div>
+      </div>
+      <label for="f_img">Image</label>
+      <input id="f_img" placeholder="https://... or uploads/photo.jpg">
+      <div class="row fit" style="margin-top:8px">
+        <input type="file" id="f_file" accept="image/*" style="max-width:260px">
+        <button class="ghost sm" id="up">Upload image</button>
+      </div>
+      <img id="prev" class="prev" alt="Image preview">
+      <div class="row fit" style="margin-top:16px">
+        <button id="save">Save article</button>
+        <button class="ghost" id="cancel">Cancel</button>
+      </div>
+    </section>
+
+    <div id="list"></div>
+  </section>
+</main>
+<div id="toast" role="status"></div>
+
+<script>
+const PATH = 'content/articles.json';
+const SECTIONS = {
+  cover: 'Cover story',
+  featured: 'Top picks',
+  fashion: 'The Fashion Edit',
+  trending: 'Trending Now',
+  live: 'Live Beautifully'
+};
+const U = id => 'https://images.unsplash.com/photo-' + id + '?w=800';
+const SEED = [
+ ['cover','Cover Story','The New Rules of Fashion: Style That Speaks for You','Discover the trends, ideas and inspirations shaping modern style.','','1534528741775-53994a69daeb'],
+ ['featured','Beauty','The Beauty Trends Everyone Is Talking About','','5 min read','1522335789203-aabd1fc54bc9'],
+ ['featured','Lifestyle','Little Things That Make Life More Beautiful','','4 min read','1511988617509-a57c8a288659'],
+ ['fashion','Fashion Trends','What to Wear This Season: A Modern Style Guide','Explore timeless silhouettes, statement pieces and effortless everyday styling.','','1483985988355-763728e1935b'],
+ ['fashion','Street Style','Street Style Inspiration That Never Goes Out of Fashion','From everyday essentials to bold looks, find your signature style.','','1485230895905-ec40ba36b9bc'],
+ ['fashion','Style Guide','Build a Wardrobe That Works for Every Occasion','Smart styling ideas to make every outfit count.','','1490481651871-ab68de25d43d'],
+ ['trending','Fashion','How to Create Your Own Signature Style','','','1515886657613-9f3515b0c78f'],
+ ['trending','Beauty','Everyday Beauty Essentials You Need','','','1596462502278-27bfdc403348'],
+ ['trending','Lifestyle','Finding Inspiration in Everyday Moments','','','1517841905240-472988babdf9'],
+ ['trending','Travel','Beautiful Destinations Worth Exploring','','','1476514525535-07fb3b4ae5f1'],
+ ['live','Beauty & Skincare','Simple Skincare Habits for a Healthy Glow','Explore everyday beauty rituals and self-care inspiration.','','1612817288484-6f916006741a'],
+ ['live','Wellness','Make Time for Yourself: The Art of Self-Care','Small habits that can make a meaningful difference.','','1544367567-0f2fcb009e0b'],
+ ['live','Travel','Discover Places That Inspire Your Next Journey','Travel ideas, experiences and beautiful destinations.','','1530789253388-582c481c54b0']
+].map(a => ({id: uid(), section:a[0], category:a[1], title:a[2], excerpt:a[3], readTime:a[4], image:U(a[5]), link:''}));
+
+const $ = s => document.querySelector(s);
+let cfg = JSON.parse(localStorage.getItem('ibcAdmin') || '{}');
+let data = [], sha = null, editId = null;
+
+function uid(){ return Math.random().toString(36).slice(2,9) + Date.now().toString(36).slice(-4); }
+function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function enc(s){ return btoa(unescape(encodeURIComponent(s))); }
+function dec(b){ return decodeURIComponent(escape(atob(b.replace(/\n/g,'')))); }
+function toast(m, err){ const t=$('#toast'); t.textContent=m; t.className='on'+(err?' err':''); clearTimeout(toast.t); toast.t=setTimeout(()=>t.className='',3200); }
+
+function api(path, opt = {}) {
+  return fetch('https://api.github.com/repos/' + cfg.repo + '/contents/' + path + (opt.q || ''), {
+    method: opt.method || 'GET',
+    headers: { Authorization: 'Bearer ' + cfg.token, Accept: 'application/vnd.github+json' },
+    body: opt.body ? JSON.stringify(opt.body) : undefined
+  });
+}
+
+async function load() {
+  const r = await api(PATH, { q: '?ref=' + encodeURIComponent(cfg.branch) });
+  if (r.status === 404) { data = []; sha = null; return; }
+  if (r.status === 401 || r.status === 403) throw new Error('Token is invalid or has no access to this repository.');
+  if (!r.ok) throw new Error('Could not load articles (error ' + r.status + ').');
+  const j = await r.json();
+  sha = j.sha;
+  data = JSON.parse(dec(j.content));
+}
+
+async function commit(msg) {
+  const body = { message: msg, content: enc(JSON.stringify(data, null, 2)), branch: cfg.branch };
+  if (sha) body.sha = sha;
+  const r = await api(PATH, { method: 'PUT', body });
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.message || 'Save failed (' + r.status + ')'); }
+  sha = (await r.json()).content.sha;
+}
+
+async function run(btn, fn) {
+  btn && (btn.disabled = true);
+  try { await fn(); } catch (e) { toast(e.message, true); }
+  btn && (btn.disabled = false);
+}
+
+function render() {
+  const L = $('#list');
+  if (!data.length) {
+    L.innerHTML = '<div class="box" style="margin-top:16px">No articles yet. Add one, or load the current site content to start from what is live now.</div>';
+    return;
+  }
+  L.innerHTML = Object.entries(SECTIONS).map(([k, name]) => {
+    const rows = data.filter(a => a.section === k);
+    if (!rows.length) return '';
+    return '<h2>' + name + '</h2><div class="box">' + rows.map(a =>
+      '<div class="item"><img src="' + esc(a.image) + '" alt="">' +
+      '<div class="t"><b>' + esc(a.title) + '</b><span>' + esc(a.category) + (a.readTime ? ' • ' + esc(a.readTime) : '') + '</span></div>' +
+      '<div class="act"><button class="ghost sm" data-up="' + a.id + '" aria-label="Move up">Up</button>' +
+      '<button class="ghost sm" data-dn="' + a.id + '" aria-label="Move down">Down</button>' +
+      '<button class="ghost sm" data-ed="' + a.id + '">Edit</button>' +
+      '<button class="bad sm" data-del="' + a.id + '">Delete</button></div></div>').join('') + '</div>';
+  }).join('');
+}
+
+function openForm(a) {
+  editId = a ? a.id : null;
+  $('#formTitle').textContent = a ? 'Edit article' : 'New article';
+  $('#f_section').value = a ? a.section : 'fashion';
+  $('#f_cat').value = a ? a.category : '';
+  $('#f_title').value = a ? a.title : '';
+  $('#f_ex').value = a ? a.excerpt : '';
+  $('#f_read').value = a ? a.readTime : '';
+  $('#f_link').value = a ? a.link : '';
+  $('#f_img').value = a ? a.image : '';
+  showPrev();
+  $('#formBox').classList.remove('hide');
+  $('#formBox').scrollIntoView({ behavior: 'smooth' });
+}
+function showPrev() {
+  const v = $('#f_img').value.trim(), p = $('#prev');
+  p.src = v; p.style.display = v ? 'block' : 'none';
+}
+
+function resize(file) {
+  return new Promise((res, rej) => {
+    const img = new Image(), u = URL.createObjectURL(file);
+    img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height));
+      const c = document.createElement('canvas');
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      URL.revokeObjectURL(u);
+      res(c.toDataURL('image/jpeg', .85).split(',')[1]);
+    };
+    img.onerror = () => rej(new Error('This file is not a readable image.'));
+    img.src = u;
+  });
+}
+
+async function start() {
+  $('#connect').classList.add('hide');
+  $('#app').classList.remove('hide');
+  $('#out').classList.remove('hide');
+  await load();
+  render();
+}
+
+$('#f_section').innerHTML = Object.entries(SECTIONS).map(([k, v]) => '<option value="' + k + '">' + v + '</option>').join('');
+$('#f_img').addEventListener('input', showPrev);
+$('#repo').value = cfg.repo || ''; $('#branch').value = cfg.branch || 'main';
+
+$('#go').onclick = e => run(e.target, async () => {
+  const repo = $('#repo').value.trim().replace(/^https?:\/\/github\.com\//, '').replace(/\/$/, '');
+  const token = $('#token').value.trim();
+  if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) throw new Error('Enter the repository as owner/name.');
+  if (!token) throw new Error('Paste your access token.');
+  cfg = { repo, token, branch: $('#branch').value.trim() || 'main' };
+  try { await start(); } catch (err) {
+    $('#connect').classList.remove('hide'); $('#app').classList.add('hide'); $('#out').classList.add('hide');
+    throw err;
+  }
+  localStorage.setItem('ibcAdmin', JSON.stringify(cfg));
+});
+
+$('#out').onclick = () => { localStorage.removeItem('ibcAdmin'); location.reload(); };
+$('#new').onclick = () => openForm(null);
+$('#cancel').onclick = () => $('#formBox').classList.add('hide');
+
+$('#seed').onclick = e => run(e.target, async () => {
+  if (data.length && !confirm('This replaces all current articles with the starter content. Continue?')) return;
+  data = JSON.parse(JSON.stringify(SEED));
+  await commit('Admin: load starter content');
+  render(); toast('Starter content saved');
+});
+
+$('#up').onclick = e => run(e.target, async () => {
+  const f = $('#f_file').files[0];
+  if (!f) throw new Error('Choose an image first.');
+  const b64 = await resize(f);
+  const name = 'uploads/' + Date.now() + '-' + f.name.replace(/\.[^.]+$/, '').replace(/[^\w-]+/g, '-').toLowerCase() + '.jpg';
+  const r = await api(name, { method: 'PUT', body: { message: 'Admin: upload ' + name, content: b64, branch: cfg.branch } });
+  if (!r.ok) throw new Error('Upload failed (' + r.status + ').');
+  $('#f_img').value = name; showPrev(); toast('Image uploaded');
+});
+
+$('#save').onclick = e => run(e.target, async () => {
+  const a = {
+    id: editId || uid(), section: $('#f_section').value, category: $('#f_cat').value.trim(),
+    title: $('#f_title').value.trim(), excerpt: $('#f_ex').value.trim(), readTime: $('#f_read').value.trim(),
+    link: $('#f_link').value.trim(), image: $('#f_img').value.trim()
+  };
+  if (!a.title) throw new Error('Add a title.');
+  const i = data.findIndex(x => x.id === a.id);
+  if (i >= 0) data[i] = a; else data.push(a);
+  await commit('Admin: ' + (i >= 0 ? 'update' : 'add') + ' "' + a.title + '"');
+  $('#formBox').classList.add('hide'); render(); toast('Saved');
+});
+
+$('#list').onclick = e => {
+  const b = e.target.closest('button'); if (!b) return;
+  const id = b.dataset.ed || b.dataset.del || b.dataset.up || b.dataset.dn;
+  const a = data.find(x => x.id === id); if (!a) return;
+  if (b.dataset.ed) return openForm(a);
+  run(b, async () => {
+    if (b.dataset.del) {
+      if (!confirm('Delete "' + a.title + '"?')) return;
+      data = data.filter(x => x.id !== id);
+      await commit('Admin: delete "' + a.title + '"');
+    } else {
+      const peers = data.filter(x => x.section === a.section);
+      const k = peers.indexOf(a), o = peers[k + (b.dataset.up ? -1 : 1)];
+      if (!o) return;
+      const i = data.indexOf(a), j = data.indexOf(o);
+      [data[i], data[j]] = [data[j], data[i]];
+      await commit('Admin: reorder "' + a.title + '"');
+    }
+    render(); toast('Done');
+  });
+};
+
+if (cfg.repo && cfg.token) start().catch(err => {
+  $('#connect').classList.remove('hide'); $('#app').classList.add('hide'); $('#out').classList.add('hide');
+  toast(err.message, true);
+});
+</script>
 </body>
 </html>
