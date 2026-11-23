@@ -1,1 +1,235 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Film Application | IBC Short Film Festival</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{--wine:#64172b;--gold:#c9a45c;--cream:#f7f4ef}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);font-family:Inter,sans-serif;color:#21191b}
+.top{background:#111;color:#d9c7a0;text-align:center;padding:12px;font-size:10px;letter-spacing:3px}
+header{background:#fff;padding:22px 7%;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:700;color:var(--wine);letter-spacing:2px}
+.brand small{display:block;font-family:Inter;font-size:9px;color:#777;letter-spacing:3px}
+header a{font-size:11px;color:var(--wine);text-decoration:none;letter-spacing:1px}
+.hero{background:#211619;color:#fff;padding:65px 8%;text-align:center}
+.eyebrow{color:var(--gold);font-size:10px;letter-spacing:4px}
+h1{font-family:'Cormorant Garamond',serif;font-size:58px;font-weight:500;margin:12px 0}
+.hero p{color:#d5c9ca;font-size:13px}
+main{max-width:900px;margin:55px auto;padding:0 20px}
+.form-card{background:#fff;padding:45px;box-shadow:0 10px 40px #2413190c}
+.form-title{font-family:'Cormorant Garamond',serif;font-size:32px;margin:0 0 8px}
+.note{font-size:12px;color:#777;line-height:1.7;margin-bottom:30px}
+.section-title{font-size:11px;letter-spacing:2px;color:var(--wine);font-weight:700;border-bottom:1px solid #e9e1dc;padding-bottom:12px;margin:35px 0 20px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field.full{grid-column:1/-1}
+label{font-size:11px;font-weight:600;color:#55484a}
+input,select,textarea{width:100%;padding:13px;border:1px solid #ddd5d1;background:#fff;font-family:Inter,sans-serif;font-size:13px;border-radius:0}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);border-color:var(--gold)}
+.hint{font-size:10px;color:#888;line-height:1.6}
+.check{display:flex;align-items:flex-start;gap:10px;margin:14px 0;font-size:12px;color:#62595a;line-height:1.7}
+.check input{width:auto;margin-top:3px}
+button{border:0;background:var(--gold);color:#17120d;padding:17px 30px;font-weight:700;font-size:11px;letter-spacing:2px;cursor:pointer}
+button:hover{background:#b58e48}
+.actions{margin-top:30px}
+#message{display:none;margin-top:20px;padding:18px;background:#f5eee1;color:#493718;font-size:13px;line-height:1.7}
+footer{background:#111;color:#aaa;text-align:center;padding:30px;font-size:11px;line-height:2}
+@media(max-width:650px){
+ header{padding:18px;display:block;text-align:center}
+ header a{display:block;margin-top:15px}
+ h1{font-size:43px}
+ .form-card{padding:25px 18px}
+ .grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="top">INTERNATIONAL BROADCASTING CORPORATION</div>
+
+<header>
+  <div class="brand">IBC BELLEZA LUXÉ
+    <small>SHORT FILM FESTIVAL</small>
+  </div>
+  <a href="short-film-festival.html">← BACK TO FESTIVAL</a>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">OFFICIAL FESTIVAL SUBMISSION</div>
+  <h1>Film Application</h1>
+  <p>Share your details and introduce your film to the IBC Festival team.</p>
+</section>
+
+<main>
+<div class="form-card">
+  <h2 class="form-title">Application Form</h2>
+  <p class="note">Please complete all applicable fields. The information provided will be used for festival application review and communication.</p>
+
+  <form id="filmForm">
+
+    <div class="section-title">01 — APPLICANT INFORMATION</div>
+    <div class="grid">
+      <div class="field full">
+        <label for="applicantType">Applicant Category *</label>
+        <select id="applicantType" name="applicantType" required>
+          <option value="">Select applicant category</option>
+          <option>Individual</option>
+          <option>Producer</option>
+          <option>Production Company</option>
+          <option>Director</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="applicantName">Applicant Full Name *</label>
+        <input id="applicantName" name="applicantName" required>
+      </div>
+      <div class="field">
+        <label for="companyName">Company / Production House</label>
+        <input id="companyName" name="companyName">
+      </div>
+      <div class="field">
+        <label for="email">Email Address *</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+      <div class="field">
+        <label for="mobile">Mobile Number *</label>
+        <input id="mobile" name="mobile" type="tel" required>
+      </div>
+      <div class="field full">
+        <label for="country">Country *</label>
+        <input id="country" name="country" required>
+      </div>
+    </div>
+
+    <div class="section-title">02 — FILM INFORMATION</div>
+    <div class="grid">
+      <div class="field">
+        <label for="filmTitle">Film Title *</label>
+        <input id="filmTitle" name="filmTitle" required>
+      </div>
+      <div class="field">
+        <label for="genre">Film Genre *</label>
+        <select id="genre" name="genre" required>
+          <option value="">Select genre</option>
+          <option>Drama</option>
+          <option>Comedy</option>
+          <option>Thriller</option>
+          <option>Documentary</option>
+          <option>Animation</option>
+          <option>Social Awareness</option>
+          <option>Romance</option>
+          <option>Horror</option>
+          <option>Experimental</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="language">Film Language *</label>
+        <input id="language" name="language" required>
+      </div>
+      <div class="field">
+        <label for="runtime">Running Time (Minutes) *</label>
+        <input id="runtime" name="runtime" type="number" min="1" required>
+      </div>
+      <div class="field">
+        <label for="year">Year of Production *</label>
+        <input id="year" name="year" type="number" min="1900" max="2100" required>
+      </div>
+      <div class="field">
+        <label for="productionCountry">Production Country</label>
+        <input id="productionCountry" name="productionCountry">
+      </div>
+      <div class="field">
+        <label for="director">Director Name *</label>
+        <input id="director" name="director" required>
+      </div>
+      <div class="field">
+        <label for="producer">Producer Name</label>
+        <input id="producer" name="producer">
+      </div>
+      <div class="field">
+        <label for="writer">Writer / Screenplay</label>
+        <input id="writer" name="writer">
+      </div>
+      <div class="field">
+        <label for="cinematographer">Cinematographer</label>
+        <input id="cinematographer" name="cinematographer">
+      </div>
+      <div class="field">
+        <label for="aspectRatio">Aspect Ratio</label>
+        <select id="aspectRatio" name="aspectRatio">
+          <option value="">Select</option>
+          <option>16:9</option>
+          <option>4:3</option>
+          <option>1:1</option>
+          <option>2.35:1</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="resolution">Film Resolution</label>
+        <select id="resolution" name="resolution">
+          <option value="">Select</option>
+          <option>4K</option>
+          <option>2K</option>
+          <option>1080p Full HD</option>
+          <option>720p HD</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="synopsis">Film Synopsis *</label>
+        <textarea id="synopsis" name="synopsis" required placeholder="Briefly describe your film and its story..."></textarea>
+      </div>
+    </div>
+
+    <div class="section-title">03 — DECLARATIONS</div>
+    <label class="check">
+      <input type="checkbox" required>
+      I confirm that I am authorised to submit this film and that the information provided is accurate.
+    </label>
+    <label class="check">
+      <input type="checkbox" required>
+      I confirm that I have the necessary rights and permissions for the film, music, images and other content submitted.
+    </label>
+    <label class="check">
+      <input type="checkbox" required>
+      I agree that the festival organisers may contact me regarding this application.
+    </label>
+
+    <div class="actions">
+      <button type="submit">SUBMIT APPLICATION →</button>
+    </div>
+
+    <div id="message">
+      The application form design is ready, but online submission is not connected yet.
+      Your details have not been saved or sent. A secure backend must be connected before accepting real applications.
+    </div>
+  </form>
+</div>
+</main>
+
+<footer>
+  <strong>IBC BELLEZA LUXÉ SHORT FILM FESTIVAL</strong><br>
+  Presented by International Broadcasting Corporation<br>
+  © 2026 IBC. All Rights Reserved.
+</footer>
+
+<script>
+document.getElementById("filmForm").addEventListener("submit", function(event){
+  event.preventDefault();
+  document.getElementById("message").style.display = "block";
+  document.getElementById("message").scrollIntoView({behavior:"smooth",block:"center"});
+});
+</script>
+
+</body>
+</html>
