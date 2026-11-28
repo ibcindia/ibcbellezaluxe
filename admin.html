@@ -132,7 +132,24 @@ const staticArticle = a => {
     '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="' + title + '">' +
     '<meta name="twitter:description" content="' + desc + '">' + (image ? '<meta name="twitter:image" content="' + esc(image) + '">' : '') +
     '<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">' +
-    '<style>*{box-sizing:border-box}body{margin:0;color:#1a1820;background:#fff;font:16px/1.6 Instrument Sans,Arial,sans-serif}.site-header{border-bottom:1px solid #e9e3e8;text-align:center;padding:22px 18px 14px}.brand{display:inline-block;color:#1a1820;text-decoration:none;font:600 30px/1.1 Cormorant Garamond,Georgia,serif;letter-spacing:.02em}.tag{margin:5px 0 0;color:#786b76;font-size:12px;letter-spacing:.12em}.site-nav{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid #eee8ed}.site-nav a{color:#5b2a4e;text-decoration:none;font-size:14px}.site-nav a:hover{text-decoration:underline}.art{max-width:760px;margin:32px auto;padding:0 20px}.art h1{font:600 clamp(32px,5vw,50px)/1.1 Cormorant Garamond,Georgia,serif}.hero{width:100%;height:auto;margin:12px 0 20px}.prose{font-size:18px;line-height:1.8}.prose img{max-width:100%;height:auto}.prose h2{font:600 28px Cormorant Garamond,Georgia,serif}.site-footer{margin-top:55px;padding:28px 18px;text-align:center;border-top:1px solid #e9e3e8;color:#786b76;font-size:13px}.site-footer a{color:#5b2a4e}a{color:#5b2a4e}@media(max-width:600px){.brand{font-size:25px}.site-nav{gap:16px}}</style></head><body>' +
+    '<style>*{box-sizing:border-box}body{margin:0;color:#1a1820;background:#fff;font:16px/1.6 Instrument Sans,Arial,sans-serif}.site-header{border-bottom:1px solid #e9e3e8;text-align:center;padding:22px 18px 14px}.brand{display:inline-block;color:#1a1820;text-decoration:none;font:600 30px/1.1 Cormorant Garamond,Georgia,serif;letter-spacing:.02em}.tag{margin:5px 0 0;color:#786b76;font-size:12px;letter-spacing:.12em}.site-nav{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid #eee8ed}.site-nav a{color:#5b2a4e;text-decoration:none;font-size:14px}.site-nav a:hover{text-decoration:underline}.art{max-width:760px;margin:32px auto;padding:0 20px}.art h1{font:600 clamp(32px,5vw,50px)/1.1 Cormorant Garamond,Georgia,serif}.hero{width:100%;height:auto;margin:12px 0 20px}.prose{font-size:18px;line-height:1.8}.prose img{max-width:100%;height:auto}.prose h2{font:600 28px Cormorant Garamond,Georgia,serif}.site-footer{margin-top:55px;padding:28px 18px;text-align:center;border-top:1px solid #e9e3e8;color:#786b76;font-size:13px}.site-footer a{color:#5b2a4e}a{color:#5b2a4e}@media(max-width:600px){.brand{font-size:25px}.site-nav{gap:16px}}
+/* IBC Belleza Luxé unified visual identity */
+
+:root{--bg:#f5f3ed;--ink:#17221e;--mute:#72766f;--line:#e2ded4;--acc:#173b32;--tint:#e8eee8;--bad:#a3332b;--serif:"Playfair Display","Cormorant Garamond",Georgia,serif}
+body{background:var(--bg);color:var(--ink);font-family:"DM Sans","Instrument Sans",Arial,sans-serif}
+.gate,.bar,dialog{border-color:var(--line)}
+.gate{box-shadow:0 18px 55px rgba(16,44,39,.08)}
+h1,.brand{font-family:"Playfair Display","Cormorant Garamond",Georgia,serif}
+.btn{background:var(--acc);border-color:var(--acc);border-radius:3px}
+.btn.g{background:#fff;color:var(--acc)}
+input,select,textarea{border-color:var(--line);border-radius:3px}
+.bar{background:#102c27;color:#f5ecdc}
+.bar small{color:#d7c7a7}
+.bar .btn.g{background:transparent;color:#f5ecdc;border-color:#c6a56a}
+#nav{background:#173b32}
+#nav button,#nav a{border-radius:3px}
+
+</style></head><body>' +
     '<header class="site-header"><a class="brand" href="' + publicBase() + '">IBC BELLEZA LUXÉ.</a><p class="tag">The art of living beautifully</p></header>' +
     '<nav class="site-nav" aria-label="Main navigation">' + navHtml + '</nav>' +
     '<article class="art"><small>' + esc(a.category || '') + (a.readTime ? ' • ' + esc(a.readTime) : '') + '</small><h1>' + title + '</h1>' +
