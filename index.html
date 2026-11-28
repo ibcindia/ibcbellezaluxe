@@ -181,15 +181,6 @@ footer p{max-width:650px;margin:12px auto;color:#c4c5bc;font-size:12px}
 <link rel="stylesheet" href="assets/css/ibc-shell.css">
 </head>
 <body id="top">
-<div class="topline">An international perspective on fashion, beauty, culture &amp; entertainment</div>
-
-<div class="nav-shell">
-  <div class="nav-inner">
-    <button class="menu-toggle" id="menuToggle" aria-label="Scroll navigation">☰</button>
-    
-  </div>
-</div>
-
 <main class="wrap" id="root">
   <p class="empty">Loading the latest stories…</p>
 </main>
@@ -224,15 +215,6 @@ fetch('content/articles.json', {cache:'no-store'})
   const pages = list.filter(a => a.type === 'page');
   const posts = list.filter(a => a.type !== 'page');
   const categories = [...new Set(posts.map(a => a.category || 'More stories'))];
-  const nav = document.getElementById('nav');
-  nav.innerHTML = '<a href="#top">Home</a><a href="#stories">Latest</a>' +
-    categories.map(c => '<a href="#c-' + slugify(c) + '">' + esc(c) + '</a>').join('') +
-    pages.filter(a => a.menu).map(a => '<a href="' + esc(href(a)) + '">' + esc(a.title) + '</a>').join('');
-
-  document.getElementById('fl').innerHTML =
-    '<a href="#top">Home</a>' +
-    pages.filter(a => a.footer !== false).map(a => '<a href="' + esc(href(a)) + '">' + esc(a.title) + '</a>').join('');
-
   const sorted = [...posts].sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
   const lead = sorted.find(a => a.section === 'cover') || sorted[0];
   const latest = sorted.filter(a => a.id !== lead?.id).slice(0,5);
@@ -284,9 +266,6 @@ fetch('content/articles.json', {cache:'no-store'})
     '<div class="empty"><strong>Stories could not be loaded.</strong><br>Please check that <code>content/articles.json</code> exists and contains valid JSON. Your homepage design is ready, but article data could not be displayed.</div>';
 });
 
-document.getElementById('menuToggle').addEventListener('click', () => {
-  document.getElementById('nav').scrollBy({left:220,behavior:'smooth'});
-});
 const backTop = document.getElementById('backTop');
 window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 500), {passive:true});
 backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
