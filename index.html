@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IBC Belleza Luxé | Fashion, Beauty & Culture</title>
+<meta name="description" content="Discover fashion, beauty, culture, lifestyle, personalities and entertainment from IBC Belleza Luxé.">
+<meta name="theme-color" content="#102c27">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<style>
+:root{
+ --green:#102c27;--green2:#1b4038;--gold:#c6a56a;--rose:#b77c79;
+ --ink:#171916;--muted:#74766f;--line:#e7e4dc;--paper:#fbfaf7;--white:#fff;
+ --serif:"Playfair Display",Georgia,serif;--sans:"DM Sans",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 var(--sans)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit}
+.topline{background:var(--green);color:#ead9b7;text-align:center;padding:8px 15px;font-size:10px;letter-spacing:.19em;text-transform:uppercase}
+.header{background:var(--paper);border-bottom:1px solid var(--line)}
+.masthead{max-width:1440px;margin:auto;padding:24px 34px 17px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand-wrap{text-align:center;margin:auto}
+.brand{font:700 clamp(28px,4.1vw,53px)/.98 var(--serif);letter-spacing:.035em;color:var(--green);display:inline-block}
+.brand span{color:var(--gold)}
+.tagline{margin:9px 0 0;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#77796f}
+.header-side{min-width:120px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.header-side.right{text-align:right}
+.nav-shell{position:sticky;top:0;z-index:30;background:rgba(251,250,247,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1440px;margin:auto;display:flex;align-items:center;justify-content:center;padding:0 26px}
+nav{display:flex;align-items:center;justify-content:center;gap:clamp(16px,2.2vw,31px);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{display:block;padding:15px 0 13px;font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{border-color:var(--gold);outline:0;color:var(--green2)}
+.menu-toggle{display:none;background:none;border:0;color:var(--green);font-size:22px;padding:9px}
+.wrap{max-width:1370px;margin:auto;padding:0 34px}
+.eyebrow{font-size:10px;line-height:1.4;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#9a7440}
+.rule-title{display:flex;align-items:center;gap:17px;margin:48px 0 22px}
+.rule-title h2{font:600 25px/1.1 var(--serif);letter-spacing:.01em;margin:0;color:var(--green)}
+.rule-title:after{content:"";height:1px;background:var(--line);flex:1}
+.hero{padding:30px 0 8px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr);gap:28px}
+.hero-feature{position:relative;min-height:480px;background:linear-gradient(135deg,#183b33,#0d211e);overflow:hidden;display:flex;align-items:end;color:#fff}
+.hero-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.76;transition:transform .7s}
+.hero-feature:hover img{transform:scale(1.025)}
+.hero-feature:after{content:"";position:absolute;inset:25% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.78))}
+.hero-content{position:relative;z-index:1;padding:clamp(24px,4vw,48px);max-width:850px}
+.hero-content .eyebrow{color:#e5c992}
+.hero-content h1{font:600 clamp(36px,5vw,66px)/1.03 var(--serif);margin:12px 0 13px;max-width:760px}
+.hero-content p{font-size:14px;max-width:630px;color:#eee8dc;margin:0 0 21px}
+.text-link{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding:0 0 7px}
+.text-link:hover{color:#e8ca91}
+.latest-panel{border-top:3px solid var(--green);padding-top:14px}
+.latest-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.latest-head h2{font:600 24px var(--serif);margin:0;color:var(--green)}
+.latest-item{display:grid;grid-template-columns:112px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);align-items:center}
+.latest-item img{width:112px;height:88px;object-fit:cover;background:#e9e6df}
+.latest-item small,.story small{display:block;color:#9a7440;font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+.latest-item h3{font:600 17px/1.2 var(--serif);margin:5px 0 0}
+.latest-item p{font-size:11px;color:var(--muted);margin:5px 0 0}
+.editorial-intro{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end;padding:32px 0 0}
+.editorial-intro h2{font:600 clamp(28px,3.6vw,43px)/1.12 var(--serif);color:var(--green);margin:8px 0 0;max-width:650px}
+.editorial-intro p{max-width:500px;color:var(--muted);font-size:13px;margin:0 0 4px}
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}
+.story{display:block;min-width:0}
+.story-image{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;background:#e9e6df;transition:transform .5s}
+.story-image-wrap{overflow:hidden;background:#e9e6df}
+.story:hover .story-image{transform:scale(1.035)}
+.story small{margin-top:13px}
+.story h3{font:600 clamp(19px,2vw,25px)/1.15 var(--serif);margin:7px 0;color:var(--ink)}
+.story p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.category-section{padding-bottom:35px;border-bottom:1px solid var(--line)}
+.category-section .story-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.category-section .story h3{font-size:19px}
+.see-more{display:inline-block;margin-top:20px;font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid var(--gold);padding-bottom:5px;color:var(--green)}
+.feature-band{margin:60px 0;background:var(--green);color:#f7f1e6;display:grid;grid-template-columns:1.1fr .9fr;min-height:310px}
+.feature-band-copy{padding:clamp(28px,5vw,58px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center}
+.feature-band-copy .eyebrow{color:#d9bd89}
+.feature-band h2{font:600 clamp(32px,4vw,49px)/1.08 var(--serif);margin:12px 0}
+.feature-band p{font-size:13px;color:#d7d9d1;max-width:520px;margin:0 0 22px}
+.feature-band-image{min-height:310px;background:linear-gradient(135deg,#4c5c4a,#a78a62);overflow:hidden}
+.feature-band-image img{width:100%;height:100%;object-fit:cover;display:block}
+.empty{padding:35px 0;color:var(--muted);font-size:13px}
+.newsletter{margin-top:60px;background:#eeeae1;padding:48px 20px;text-align:center}
+.newsletter .eyebrow{color:#967243}
+.newsletter h2{font:600 clamp(27px,3vw,37px) var(--serif);margin:9px 0}
+.newsletter p{color:var(--muted);font-size:13px;margin:0}
+.newsletter-note{font-size:10px!important;margin-top:14px!important}
+footer{background:#0d211e;color:#e9e2d5;padding:42px 25px 25px;text-align:center}
+.footer-brand{font:700 30px var(--serif);letter-spacing:.04em;color:#e8d4ac}
+.footer-brand span{color:#c6a56a}
+footer p{max-width:650px;margin:12px auto;color:#c4c5bc;font-size:12px}
+.footer-links{display:flex;justify-content:center;flex-wrap:wrap;gap:9px 22px;margin:22px auto}
+.footer-links a{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:#e9e2d5}
+.copyright{border-top:1px solid rgba(255,255,255,.15);padding-top:18px;margin-top:25px!important;font-size:10px!important}
+.back-top{position:fixed;right:18px;bottom:18px;width:42px;height:42px;border:1px solid #c6a56a;background:var(--green);color:#f5e8cf;border-radius:50%;font-size:18px;cursor:pointer;z-index:10;opacity:0;pointer-events:none;transition:opacity .2s}
+.back-top.show{opacity:1;pointer-events:auto}
+@media(max-width:900px){
+ .masthead{padding-left:20px;padding-right:20px}.header-side{min-width:80px}
+ .hero-grid{grid-template-columns:1fr}.hero-feature{min-height:440px}
+ .latest-panel{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:22px}
+ .latest-head{grid-column:1/-1}.latest-item{grid-template-columns:92px 1fr}
+ .latest-item img{width:92px;height:76px}
+ .category-section .story-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .topline{font-size:8px;letter-spacing:.12em}
+ .masthead{padding:19px 12px 15px}.header-side{display:none}
+ .brand{font-size:34px}.tagline{font-size:8px;letter-spacing:.16em}
+ .nav-inner{justify-content:flex-start;padding:0 12px}
+ .menu-toggle{display:block}
+ nav{justify-content:flex-start;gap:21px;flex:1}
+ nav a{font-size:9px;padding:13px 0}
+ .wrap{padding:0 16px}
+ .hero{padding-top:17px}.hero-grid{gap:22px}.hero-feature{min-height:410px}
+ .hero-content{padding:24px}.hero-content h1{font-size:39px}
+ .hero-content p{font-size:12px}
+ .latest-panel{display:block}.latest-head h2{font-size:22px}
+ .latest-item{grid-template-columns:94px 1fr}
+ .latest-item img{width:94px;height:75px}
+ .rule-title{margin:37px 0 18px}.rule-title h2{font-size:22px}
+ .editorial-intro{grid-template-columns:1fr;gap:10px;padding-top:24px}
+ .story-grid,.category-section .story-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}
+ .story h3,.category-section .story h3{font-size:17px}
+ .story p{font-size:11px}
+ .feature-band{grid-template-columns:1fr;margin:42px 0}
+ .feature-band-image{min-height:230px;grid-row:1}
+ .feature-band-copy{padding:28px 23px}
+ .feature-band h2{font-size:34px}
+ .newsletter{margin-top:42px;padding:38px 18px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
+</head>
+<body id="top">
+<div class="topline">An international perspective on fashion, beauty, culture &amp; entertainment</div>
+<header class="header">
+  <div class="masthead">
+    <div class="header-side">The world<br>in focus</div>
+    <div class="brand-wrap">
+      <a class="brand" href="index.html" aria-label="IBC Belleza Luxé home">IBC BELLEZA <span>LUXÉ</span></a>
+      <p class="tagline">The art of living beautifully</p>
+    </div>
+    <div class="header-side right">Fashion · Beauty<br>Culture · People</div>
+  </div>
+</header>
+<div class="nav-shell">
+  <div class="nav-inner">
+    <button class="menu-toggle" id="menuToggle" aria-label="Scroll navigation">☰</button>
+    <nav aria-label="Main navigation" id="nav">
+      <a href="#top">Home</a>
+      <a href="#stories">Latest</a>
+      <a href="#pageant">Pageant</a>
+      <a href="#footer">Contact</a>
+    </nav>
+  </div>
+</div>
+
+<main class="wrap" id="root">
+  <p class="empty">Loading the latest stories…</p>
+</main>
+
+<section class="newsletter">
+  <div class="eyebrow">The Luxé Edit</div>
+  <h2>A world of inspiration, thoughtfully curated.</h2>
+  <p>Explore the latest stories from fashion, beauty, lifestyle and culture.</p>
+  <p class="newsletter-note">For editorial and partnership enquiries, please contact the IBC team.</p>
+</section>
+
+<footer id="footer">
+  <a class="footer-brand" href="index.html">IBC BELLEZA <span>LUXÉ</span></a>
+  <p>Fashion, beauty, lifestyle, culture and extraordinary personalities — brought together by IBC.</p>
+  <div class="footer-links" id="fl">
+    <a href="#top">Home</a><a href="#stories">Latest Stories</a><a href="#pageant">Pageant</a>
+  </div>
+  <p class="copyright">© 2026 IBC BELLEZA LUXÉ. All Rights Reserved.</p>
+</footer>
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const href = a => a.link || (a.type === 'page' || !a.slug
+  ? 'article.html?id=' + encodeURIComponent(a.id)
+  : 'articles/' + encodeURIComponent(a.slug) + '/');
+const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'stories';
+const image = a => a.image ? esc(a.image) : '';
+const story = a => '<a class="story" href="' + esc(href(a)) + '">' +
+  '<div class="story-image-wrap">' + (image(a) ? '<img class="story-image" loading="lazy" src="' + image(a) + '" alt="' + esc(a.title) + '">' : '<div class="story-image"></div>') + '</div>' +
+  '<small>' + esc(a.category || 'Latest') + (a.readTime ? ' · ' + esc(a.readTime) : '') + '</small>' +
+  '<h3>' + esc(a.title) + '</h3>' + (a.excerpt ? '<p>' + esc(a.excerpt) + '</p>' : '') + '</a>';
+
+fetch('content/articles.json', {cache:'no-store'})
+.then(r => r.ok ? r.json() : Promise.reject(new Error('Could not load article data')))
+.then(list => {
+  if (!Array.isArray(list)) throw new Error('Article data must be a JSON array');
+  list = list.filter(a => a && a.status === 'published');
+  const pages = list.filter(a => a.type === 'page');
+  const posts = list.filter(a => a.type !== 'page');
+  const categories = [...new Set(posts.map(a => a.category || 'More stories'))];
+  const nav = document.getElementById('nav');
+  nav.innerHTML = '<a href="#top">Home</a><a href="#stories">Latest</a>' +
+    categories.map(c => '<a href="#c-' + slugify(c) + '">' + esc(c) + '</a>').join('') +
+    pages.filter(a => a.menu).map(a => '<a href="' + esc(href(a)) + '">' + esc(a.title) + '</a>').join('');
+
+  document.getElementById('fl').innerHTML =
+    '<a href="#top">Home</a>' +
+    pages.filter(a => a.footer !== false).map(a => '<a href="' + esc(href(a)) + '">' + esc(a.title) + '</a>').join('');
+
+  const sorted = [...posts].sort((a,b) => new Date(b.date || 0) - new Date(a.date || 0));
+  const lead = sorted.find(a => a.section === 'cover') || sorted[0];
+  const latest = sorted.filter(a => a.id !== lead?.id).slice(0,5);
+  let out = '';
+
+  if (lead) {
+    out += '<section class="hero"><div class="hero-grid">' +
+      '<a class="hero-feature" href="' + esc(href(lead)) + '">' +
+      (image(lead) ? '<img src="' + image(lead) + '" alt="' + esc(lead.title) + '">' : '') +
+      '<div class="hero-content"><div class="eyebrow">' + esc(lead.category || 'The Cover Story') + '</div>' +
+      '<h1>' + esc(lead.title) + '</h1><p>' + esc(lead.excerpt || 'Discover the people, ideas and stories shaping the world of fashion, beauty and culture.') + '</p>' +
+      '<span class="text-link">Explore the story&nbsp; ↗</span></div></a>' +
+      '<aside class="latest-panel"><div class="latest-head"><h2>Latest Stories</h2><span class="eyebrow">The Edit</span></div>' +
+      (latest.length ? latest.map(a => '<a class="latest-item" href="' + esc(href(a)) + '">' +
+        (image(a) ? '<img loading="lazy" src="' + image(a) + '" alt="' + esc(a.title) + '">' : '<div></div>') +
+        '<div><small>' + esc(a.category || 'Latest') + '</small><h3>' + esc(a.title) + '</h3>' +
+        (a.readTime ? '<p>' + esc(a.readTime) + '</p>' : '') + '</div></a>').join('') :
+        '<p class="empty">More stories coming soon.</p>') +
+      '</aside></div></section>';
+  } else {
+    out += '<section class="hero"><div class="editorial-intro"><div><div class="eyebrow">Welcome to IBC Belleza Luxé</div><h2>Style, substance and stories that move culture.</h2></div><p>Discover fashion, beauty, lifestyle, entertainment and extraordinary personalities.</p></div></section>';
+  }
+
+  const remaining = sorted.filter(a => a.id !== lead?.id);
+  out += '<section id="stories"><div class="rule-title"><h2>Discover the Latest</h2></div>' +
+    (remaining.length ? '<div class="story-grid">' + remaining.slice(0,6).map(story).join('') + '</div>' : '<p class="empty">Published stories will appear here.</p>') +
+    '</section>';
+
+  categories.forEach(c => {
+    const items = sorted.filter(a => (a.category || 'More stories') === c);
+    if (!items.length) return;
+    out += '<section class="category-section" id="c-' + slugify(c) + '">' +
+      '<div class="rule-title"><h2>' + esc(c) + '</h2></div>' +
+      '<div class="story-grid">' + items.slice(0,4).map(story).join('') + '</div>' +
+      (items.length > 4 ? '<a class="see-more" href="#c-' + slugify(c) + '">Explore more in ' + esc(c) + ' ↑</a>' : '') +
+      '</section>';
+  });
+
+  out += '<section class="feature-band" id="pageant"><div class="feature-band-copy">' +
+    '<div class="eyebrow">The IBC Experience</div><h2>Confidence. Character. A world of possibility.</h2>' +
+    '<p>Discover the IBC Belleza Luxé Diva platform — celebrating individuality, talent, style and ambition.</p>' +
+    '<a class="text-link" href="https://ibcbellezaluxe.in/">Explore IBC Belleza Luxé&nbsp; ↗</a></div>' +
+    '<div class="feature-band-image"></div></section>';
+
+  document.getElementById('root').innerHTML = out;
+})
+.catch(err => {
+  document.getElementById('root').innerHTML =
+    '<div class="empty"><strong>Stories could not be loaded.</strong><br>Please check that <code>content/articles.json</code> exists and contains valid JSON. Your homepage design is ready, but article data could not be displayed.</div>';
+});
+
+document.getElementById('menuToggle').addEventListener('click', () => {
+  document.getElementById('nav').scrollBy({left:220,behavior:'smooth'});
+});
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => backTop.classList.toggle('show', window.scrollY > 500), {passive:true});
+backTop.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+</script>
+</body>
+</html>
