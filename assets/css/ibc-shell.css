@@ -1,0 +1,18 @@
+:root{--ibc-green:#102e29;--ibc-green2:#183d35;--ibc-gold:#c8a96b;--ibc-cream:#f7f3eb;--ibc-ink:#171a18}
+#ibc-site-header{position:relative;z-index:1000;background:var(--ibc-green);color:var(--ibc-cream);border-bottom:1px solid rgba(200,169,107,.55);font-family:Arial,sans-serif}
+#ibc-site-header .ibc-mast{max-width:1440px;margin:auto;padding:22px 24px 17px;text-align:center}
+#ibc-site-header .ibc-brand{display:inline-block;color:#f3e6c9;text-decoration:none;font-family:Georgia,serif;font-size:clamp(25px,4vw,39px);letter-spacing:.12em;font-weight:600}
+#ibc-site-header .ibc-brand span{color:var(--ibc-gold)}
+#ibc-site-header .ibc-tag{margin:7px 0 0;color:#d8c9a8;font-size:10px;letter-spacing:.25em;text-transform:uppercase}
+#ibc-site-header .ibc-nav{display:flex;justify-content:center;align-items:center;gap:clamp(12px,2.5vw,34px);flex-wrap:wrap;padding:13px 18px;border-top:1px solid rgba(200,169,107,.25);background:#0b241f}
+#ibc-site-header .ibc-nav a{color:#f5efe3;text-decoration:none;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:5px 0;border-bottom:1px solid transparent}
+#ibc-site-header .ibc-nav a:hover,#ibc-site-header .ibc-nav a:focus{color:var(--ibc-gold);border-color:var(--ibc-gold)}
+#ibc-site-footer{margin-top:70px;padding:42px 22px 24px;background:var(--ibc-green);color:#eee6d6;text-align:center;border-top:2px solid var(--ibc-gold);font-family:Arial,sans-serif}
+#ibc-site-footer .ibc-footbrand{font:600 25px Georgia,serif;letter-spacing:.12em;color:#f3e6c9;text-decoration:none}
+#ibc-site-footer .ibc-footbrand span{color:var(--ibc-gold)}
+#ibc-site-footer p{color:#d4c9b5;font-size:12px;line-height:1.7;margin:12px auto;max-width:620px}
+#ibc-site-footer .ibc-footlinks{display:flex;justify-content:center;gap:12px 24px;flex-wrap:wrap;margin:22px auto}
+#ibc-site-footer a{color:#f3e6c9;text-decoration:none;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+#ibc-site-footer a:hover{color:var(--ibc-gold)}
+#ibc-site-footer .ibc-copy{padding-top:15px;border-top:1px solid rgba(200,169,107,.25);font-size:10px;letter-spacing:.08em}
+@media(max-width:640px){#ibc-site-header .ibc-mast{padding:17px 12px 13px}#ibc-site-header .ibc-nav{gap:10px 17px;padding:12px 10px}#ibc-site-header .ibc-nav a{font-size:9px}#ibc-site-footer{margin-top:42px;padding:32px 15px 20px}}
