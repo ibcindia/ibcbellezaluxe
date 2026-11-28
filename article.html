@@ -87,15 +87,13 @@ const sl = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|
 const md = s => esc(s).split(/\n{2,}/).map(b => /^## /.test(b) ? '<h2>' + b.slice(3) + '</h2>' : '<p>' + b.replace(/\n/g, '<br>') + '</p>').join('').replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
 const card = a => '<a class="card" href="' + esc(href(a)) + '"><img loading="lazy" src="' + esc(a.image) + '" alt=""><small>' + esc(a.category) + '</small><h3>' + esc(a.title) + '</h3>' + (a.excerpt ? '<p>' + esc(a.excerpt) + '</p>' : '') + '</a>';
 const id = new URLSearchParams(location.search).get('id');
-const canonicalBase = location.origin + location.pathname.replace(/article\\.html?$/i, '');
+const canonicalBase = location.origin + location.pathname.replace(/article\.html?$/i, '');
 const absImg = v => !v ? '' : /^(https?:)/.test(v) ? v : new URL(v, canonicalBase).href;
 fetch('content/articles.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : []).catch(() => []).then(list => {
   list = list.filter(a => a.status !== 'draft');
   const pages = list.filter(a => a.type === 'page'), posts = list.filter(a => a.type !== 'page');
   const S = ['cover', 'featured', 'trending'], cats = [...new Set(posts.filter(a => !S.includes(a.section)).map(a => a.category || 'More stories'))];
   const pl = f => pages.filter(f).map(a => '<a href="' + esc(href(a)) + '">' + esc(a.title) + '</a>').join('');
-  nav.innerHTML = '<a href="index.html">Home</a>' + cats.map(c => '<a href="index.html#c-' + sl(c) + '">' + esc(c) + '</a>').join('') + pl(a => a.menu);
-  fl.innerHTML = pl(a => a.footer !== false);
   const a = list.find(x => x.id === id), root = document.getElementById('root');
   if (!a) { root.innerHTML = '<p class="empty">Page not found. <a href="index.html"><u>Go to home</u></a></p>'; return; }
   document.title = a.title + ' | IBC BELLEZA LUXÉ';
@@ -113,7 +111,7 @@ fetch('content/articles.json', { cache: 'no-store' }).then(r => r.ok ? r.json() 
   let h = '<article class="art">' + (isPage ? '' : '<small>' + esc(a.category) + (a.readTime ? ' • ' + esc(a.readTime) : '') + '</small>') + '<h1>' + esc(a.title) + '</h1>' +
     (!isPage && a.image ? '<img class="hero" src="' + esc(a.image) + '" alt="">' : '') + '<div class="prose">' + (a.format === 'html' ? a.body : md(a.body || '')) + '</div></article>';
   if (isPage) {
-    const L = posts.filter(p => (p.showOn || []).includes(a.id) || (a.listCat && p.category === a.listCat));
+    const L = posts.filter(p => (p.showOn || []).includes(a.id) || (a.listCat && String(p.category||'').trim().toLowerCase() === String(a.listCat).trim().toLowerCase()));
     if (L.length) h += '<div class="grid" style="margin:40px 0">' + L.map(card).join('') + '</div>';
   }
   root.innerHTML = h;
