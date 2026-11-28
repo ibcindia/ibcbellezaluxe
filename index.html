@@ -137,6 +137,45 @@ footer p{max-width:650px;margin:12px auto;color:#c4c5bc;font-size:12px}
  .feature-band h2{font-size:34px}
  .newsletter{margin-top:42px;padding:38px 18px}
 }
+/* Featured story: image first, headline beneath it; no excerpt */
+.hero-feature{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  min-height:0;
+  background:transparent;
+  color:var(--ink);
+}
+.hero-feature:after{display:none}
+.hero-feature img{
+  position:static;
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  opacity:1;
+}
+.hero-feature:hover img{transform:none}
+.hero-content{
+  position:static;
+  z-index:auto;
+  max-width:none;
+  padding:20px 2px 8px;
+  color:var(--ink);
+}
+.hero-content .eyebrow{color:#9a7440}
+.hero-content h1{
+  color:var(--green);
+  font-size:clamp(30px,3.8vw,49px);
+  margin:8px 0 13px;
+}
+.hero-content p{display:none}
+.hero-content .text-link{color:var(--green);margin-top:2px}
+@media(max-width:600px){
+  .hero-content{padding:15px 1px 5px}
+  .hero-content h1{font-size:32px}
+}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
 </style>
 </head>
